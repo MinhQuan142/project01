@@ -29,10 +29,10 @@ header h1 {
   color: black;
 }
 
-/* .sidebar .nav-link:hover {
+.sidebar .nav-link:hover {
   background-color: #ffc107;
   color: black;
-} */
+}
 
 .main {
   padding: 20px;

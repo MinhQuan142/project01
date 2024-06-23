@@ -1,3 +1,16 @@
+$(document).ready(function () {
+  $("#eye").click(function () {
+    $(this).toggleClass("open");
+    $(this).children("i").toggleClass("fa-eye-slash fa-eye");
+    if ($(this).hasClass("open")) {
+      $(this).prev().attr("type", "text");
+    } else {
+      $(this).prev().attr("type", "password");
+    }
+  });
+});
+
+// nhập form vào
 //tạo dữ liệu để đăng nhập
 let userList = [
   {
@@ -48,7 +61,7 @@ function login(event) {
   alert("Đăng Nhập Thành Công");
 
   localStorage.setItem("userLogin", JSON.stringify(userExisted));
-  window.location.href = "index.html";
+  window.location.href = "trangchu.html";
 }
 
 // Đăng Xuất Tài Khoản
