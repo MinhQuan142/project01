@@ -15,7 +15,7 @@
     <script>
       let userLogin = localStorage.getItem("userLogin");
       if (!userLogin) {
-        window.location.href = "login.html";
+        window.location.href = "./login/";
       }
     </script>
   </head>
@@ -33,7 +33,7 @@
 
         <button
           class="btn btn-light"
-          onclick="localStorage.removeItem('userLogin'); window.location.href = 'login.html';"
+          onclick="localStorage.removeItem('userLogin'); window.location.href = '/login';"
         >
           Đăng xuất
         </button>

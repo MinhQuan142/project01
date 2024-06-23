@@ -48,7 +48,7 @@ function login(event) {
   alert("Đăng Nhập Thành Công");
 
   localStorage.setItem("userLogin", JSON.stringify(userExisted));
-  window.location.href = "index.html";
+  window.location.href = "../";
 }
 
 // Đăng Xuất Tài Khoản
