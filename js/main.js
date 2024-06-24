@@ -7,7 +7,7 @@ let userList = [
   },
   {
     id: Date.now(),
-    userName: "member1",
+    userName: "member",
     password: "1234",
   },
 ];
@@ -17,16 +17,12 @@ localStorage.setItem("userList", JSON.stringify(userList));
 function login(event) {
   event.preventDefault();
 
-  // let userName = document.querySelector(".userName").value;
-  // let userPassword = document.querySelector(".userPassword").value;
-  // console.log("đã vào", userName,userPassword)
-
   let userName = event.target.userName.value;
   let password = event.target.password.value;
 
   let userList = JSON.parse(localStorage.getItem("userList"));
 
-  let userExisted = null;
+  let userExisted = null; //Biến để lưu trữ thông tin người dùng nếu tìm thấy.
 
   for (let i = 0; i < userList.length; i++) {
     if (userList[i].userName == userName) {
@@ -34,7 +30,7 @@ function login(event) {
       break;
     }
   }
-
+  //Nếu không tìm thấy người dùng, hiển thị thông báo và thoát khỏi hàm
   if (!userExisted) {
     alert("Tài Khoản Không Tồn Tại");
     return;

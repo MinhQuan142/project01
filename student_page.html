@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hệ Thống Quản Lý Sinh Viên Rikkei</title>
-    <script src="/js/main.js"></script>
+    <script>
+      let userLogin = localStorage.getItem("userLogin");
+      if (!userLogin) {
+        window.location.href = "/login";
+      }
+    </script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,13 +18,6 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/student_page.css" />
-
-    <script>
-      let userLogin = localStorage.getItem("userLogin");
-      if (!userLogin) {
-        window.location.href = "/login";
-      }
-    </script>
   </head>
   <body>
     <div class="container-fluid p-0">
@@ -32,13 +30,15 @@
         <h1 class="text-center flex-grow-1">
           HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI
         </h1>
-
-        <button
-          class="btn btn-light"
-          onclick="localStorage.removeItem('userLogin'); window.location.href = '/login';"
-        >
-          Đăng xuất
-        </button>
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-3">Xin chào: <b class="userNameLogin"></b></p>
+          <button
+            class="btn btn-light"
+            onclick="localStorage.removeItem('userLogin'); window.location.href = '/login';"
+          >
+            Đăng xuất
+          </button>
+        </div>
       </header>
 
       <div class="row">
@@ -50,12 +50,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="course_page.html">
                 <span>icon</span> Quản lý khóa học
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="class_page.html">
                 <span>icon</span> Quản lý lớp học
               </a>
             </li>
@@ -65,7 +65,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="account_page.html">
                 <span>icon</span> Quản lý tài khoản
               </a>
             </li>
@@ -143,53 +143,6 @@
               </form>
             </div>
           </div>
-          <!-- <div class="mb-4">
-            <h5><b>Thống kê khóa học</b></h5>
-            <p>
-              <i>-Số khóa học:</i> <span class="float-end"><b>xxx</b></span>
-            </p>
-          </div>
-
-          <div class="mb-4">
-            <h5>
-              <b>Thống kê lớp học</b>
-            </h5>
-            <p>
-              <i>-Số lớp học:</i> <span class="float-end"><b>xxx</b></span>
-            </p>
-            <p>
-              <i>-Số lớp đang hoạt động:</i>
-              <span class="float-end"><b>xxx</b></span>
-            </p>
-            <p>
-              <i>-Số lớp đã kết thúc:</i>
-              <span class="float-end"><b>xxx</b></span>
-            </p>
-            <p>
-              <i>-Số lớp đang chờ:</i> <span class="float-end"><b>xxx</b></span>
-            </p>
-          </div>
-
-          <div class="mb-4">
-            <h5><b>Thống kê sinh viên</b></h5>
-            <p>
-              <i>-Tổng số SV:</i> <span class="float-end"><b>xxx</b></span>
-            </p>
-            <p>
-              <i>-Số SV chờ lớp:</i> <span class="float-end"><b>xxx</b></span>
-            </p>
-            <p>
-              <i>-Số SV đang học:</i> <span class="float-end"><b>xxx</b></span>
-            </p>
-            <p>
-              <i>-Số SV bảo lưu/đình chỉ:</i>
-              <span class="float-end"><b>xxx</b></span>
-            </p>
-            <p>
-              <i>-Số SV tốt nghiệp:</i>
-              <span class="float-end"><b>xxx</b></span>
-            </p>
-          </div> -->
         </main>
       </div>
 
@@ -197,7 +150,13 @@
         <small>Copyright Rikkei Academy @2023</small>
       </footer>
     </div>
-    <!-- // Kiểm tra đăng nhập -->
+    <!-- hiện thị tên người dùng đăng nhập -->
+    <script>
+      let user = JSON.parse(localStorage.getItem("userLogin"));
+      if (user && user.userName) {
+        document.querySelector(".userNameLogin").innerText = user.userName;
+      }
+    </script>
     <script src="./js/student_page.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
