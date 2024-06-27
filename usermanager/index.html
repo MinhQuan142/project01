@@ -18,7 +18,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/style.css" />
+    <!-- <link rel="stylesheet" href="../css/style.css" /> -->
   </head>
   <body>
     <div class="container-fluid p-0">
@@ -74,6 +74,16 @@
             <button class="btn btn-success" onclick="addUser()">
               Thêm tài khoản
             </button>
+            <input
+              type="text"
+              id="search"
+              placeholder="Tìm kiếm tài khoản"
+              oninput="searchUser()"
+            />
+            <select id="sortOptions" onchange="sortTable()">
+              <option value="userName">Sắp xếp theo tên</option>
+              <option value="status">Sắp xếp theo trạng thái</option>
+            </select>
             <table class="table">
               <thead>
                 <tr>
@@ -85,6 +95,11 @@
               </thead>
               <tbody id="user_box"></tbody>
             </table>
+            <div class="pagination">
+              <button class="btn btn-light" onclick="prevPage()">Prev</button>
+              <span id="pageInfo"></span>
+              <button class="btn btn-light" onclick="nextPage()">Next</button>
+            </div>
           </div>
         </main>
       </div>
