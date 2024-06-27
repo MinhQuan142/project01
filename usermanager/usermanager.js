@@ -1,41 +1,26 @@
-// Kiểm tra nếu userList không tồn tại trong localStorage thì khởi tạo một danh sách người dùng mặc định
-if (!localStorage.getItem("userList")) {
-  let userList = [
-    {
-      id: Date.now().toString(36) + Math.random().toString(36),
-      userName: "admin",
-      password: "",
-      status: true,
-    },
-  ];
-  localStorage.setItem("userList", JSON.stringify(userList));
-}
-
-// Lấy thông tin đăng nhập của người dùng từ localStorage
-let userLogin = localStorage.getItem("userLogin");
-if (!userLogin) {
-  window.location.href = "/login"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
-} else {
-  userLogin = JSON.parse(userLogin);
-}
-
 // Số lượng tài khoản hiển thị trên mỗi trang
 const itemsPerPage = 5;
 let currentPage = 1; // Trang hiện tại
 
 renderHeader();
-
-// Hiển thị dữ liệu tài khoản người dùng lên trang
 function renderData(filteredUsers = null) {
-  let userList = JSON.parse(localStorage.getItem("userList"));
+  // Lấy danh sách người dùng từ localStorage và chuyển đổi từ JSON thành mảng đối tượng
+  let userList = JSON.parse(localStorage.getItem("userList")) || [];
+
+  console.log("đã vào" + userList);
+  // Nếu có danh sách người dùng được lọc, sử dụng danh sách này thay cho danh sách từ localStorage
   if (filteredUsers) {
     userList = filteredUsers;
   }
 
+  // Tính toán chỉ số bắt đầu và kết thúc cho trang hiện tại
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+
+  // Cắt mảng người dùng để lấy những người dùng thuộc trang hiện tại
   const paginatedUsers = userList.slice(startIndex, endIndex);
 
+  // Khởi tạo chuỗi HTML để hiển thị người dùng
   let htmlStr = ``;
   for (let i = 0; i < paginatedUsers.length; i++) {
     htmlStr += `
@@ -46,7 +31,7 @@ function renderData(filteredUsers = null) {
         <td>
           <button class="btn btn-primary" onclick="changeStatusUser(${
             paginatedUsers[i].id
-          })">block / unlock</button>
+          })">Khóa / Mở Khóa</button>
           <button class="btn btn-danger" onclick="deleteUser(${
             paginatedUsers[i].id
           })">Xóa</button>
@@ -54,7 +39,11 @@ function renderData(filteredUsers = null) {
       </tr>
     `;
   }
+
+  // Chèn chuỗi HTML vào bảng người dùng trong trang web
   document.querySelector("#user_box").innerHTML = htmlStr;
+
+  // Cập nhật thông tin trang hiện tại
   document.getElementById(
     "pageInfo"
   ).innerText = `Page ${currentPage} of ${Math.ceil(
@@ -98,6 +87,7 @@ function addUser() {
   userList.push(newUser);
   localStorage.setItem("userList", JSON.stringify(userList));
   renderData();
+  // window.location.reload();
 }
 
 // Tìm kiếm tài khoản

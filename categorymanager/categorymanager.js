@@ -1,5 +1,4 @@
 // categorymanager.js
-
 const categoriesPerPage = 5; // Số danh mục mỗi trang
 let currentPage = 1; // Trang hiện tại
 let categories = JSON.parse(localStorage.getItem("categories")) || []; // Danh sách danh mục từ localStorage hoặc khởi tạo rỗng

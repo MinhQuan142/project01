@@ -24,9 +24,9 @@ function renderProducts() {
   // Tạo HTML cho danh sách sản phẩm
   paginatedProducts.forEach((product, index) => {
     const statusClass =
-      product.status === "Đang bán"
+      product.status === "sellingProducts"
         ? "text-success"
-        : product.status === "Ngưng bán"
+        : product.status === "stoppedProducts"
         ? "text-danger text-decoration-line-through"
         : "text-warning";
     productList.innerHTML += `

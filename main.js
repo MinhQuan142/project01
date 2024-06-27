@@ -30,23 +30,21 @@ let productList = JSON.parse(localStorage.getItem("products")) || [];
 // Tính tổng số sản phẩm
 let totalProducts = productList.length;
 
-// // Tính số sản phẩm đang bán
-// let sellingProducts = productList.filter(
-//   (product) => product.status === "Đang Bán"
-// ).length;
+// Tính số sản phẩm đang bán
+let sellingProducts = productList.filter(
+  (product) => product.status === "sellingProducts"
+).length;
 
-// // Tính số sản phẩm ngưng bán
-// let stoppedProducts = productList.filter(
-//   (product) => product.status === "Ngưng Bán"
-// ).length;
+// Tính số sản phẩm ngưng bán
+let stoppedProducts = productList.filter(
+  (product) => product.status === "stoppedProducts"
+).length;
 
-// // Tính số sản phẩm sắp bán
-// let comingProducts = productList.filter(
-//   (product) => product.status === "Sắp Bán"
-// ).length;
-
+// Tính số sản phẩm sắp bán
+let pendingProducts = totalProducts - (sellingProducts + stoppedProducts);
+console.log("đã vào");
 // Cập nhật thông tin thống kê sản phẩm trên trang
 document.getElementById("totalProducts").innerText = totalProducts;
 document.getElementById("sellingProducts").innerText = sellingProducts;
 document.getElementById("stoppedProducts").innerText = stoppedProducts;
-document.getElementById("comingProducts").innerText = comingProducts;
+document.getElementById("pendingProducts").innerText = pendingProducts;

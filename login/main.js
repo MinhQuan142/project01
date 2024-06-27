@@ -2,9 +2,9 @@
 if (!localStorage.getItem("userList")) {
   let userList = [
     {
-      id: Date.now(),
+      id: Date.now().toString(36) + Math.random().toString(36),
       userName: "admin",
-      password: "123456",
+      password: "",
       status: true,
     },
   ];

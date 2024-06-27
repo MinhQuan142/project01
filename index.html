@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hệ Thống Quản Lý Sinh Viên Rikkei</title>
+    <title>Hệ Thống Quản Lý Rikkei</title>
     <script>
       let userLogin = localStorage.getItem("userLogin");
       if (!userLogin) {
@@ -24,9 +24,9 @@
         class="d-flex justify-content-between align-items-center p-3 border-bottom"
       >
         <div class="logo">
-          <img src="./img/logo.png" alt="Logo Rikkei Academy" />
+          <img src="/img/logo.png" alt="Logo Rikkei Academy" />
         </div>
-        <h1 class="text-center flex-grow-1">HỆ THỐNG QUẢN LÝ DANH MỤC</h1>
+        <h1 class="text-center flex-grow-1">HỆ THỐNG QUẢN LÝ CỦA RIKKEI</h1>
         <div class="d-flex align-items-center">
           <p class="mb-0 me-3">Xin chào: <b class="userNameLogin"></b></p>
           <button
@@ -76,6 +76,18 @@
             <p>
               <i>- Số sản phẩm đang có</i>
               <span class="float-end"><b id="totalProducts">xxx</b></span>
+            </p>
+            <p>
+              <i>- Số sản phẩm đang bán:</i>
+              <span class="float-end"><b id="sellingProducts">xxx</b></span>
+            </p>
+            <p>
+              <i>- Số sản phẩm ngưng bán:</i>
+              <span class="float-end"><b id="stoppedProducts">xxx</b></span>
+            </p>
+            <p>
+              <i>- Số sản phẩm đang chờ đăng bán:</i>
+              <span class="float-end"><b id="pendingProducts">xxx</b></span>
             </p>
           </div>
 
