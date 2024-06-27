@@ -1,131 +1,146 @@
-// Số lượng tài khoản hiển thị trên mỗi trang
-const itemsPerPage = 5;
+// usermanager.js
+
+const usersPerPage = 5; // Số tài khoản mỗi trang
 let currentPage = 1; // Trang hiện tại
+let users = JSON.parse(localStorage.getItem("userList")) || []; // Lấy danh sách tài khoản từ localStorage hoặc khởi tạo rỗng
 
-renderHeader();
-function renderData(filteredUsers = null) {
-  // Lấy danh sách người dùng từ localStorage và chuyển đổi từ JSON thành mảng đối tượng
-  let userList = JSON.parse(localStorage.getItem("userList")) || [];
+// Khởi tạo trang
+document.addEventListener("DOMContentLoaded", () => {
+  renderUsers();
+});
 
-  console.log("đã vào" + userList);
-  // Nếu có danh sách người dùng được lọc, sử dụng danh sách này thay cho danh sách từ localStorage
-  if (filteredUsers) {
-    userList = filteredUsers;
-  }
+// Hiển thị danh sách tài khoản trên trang
+function renderUsers() {
+  const userList = document.getElementById("userList");
+  userList.innerHTML = "";
 
-  // Tính toán chỉ số bắt đầu và kết thúc cho trang hiện tại
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  // Tính toán sản phẩm cần hiển thị dựa trên trang hiện tại
+  const startIndex = (currentPage - 1) * usersPerPage;
+  const endIndex = startIndex + usersPerPage;
+  const paginatedUsers = users.slice(startIndex, endIndex);
 
-  // Cắt mảng người dùng để lấy những người dùng thuộc trang hiện tại
-  const paginatedUsers = userList.slice(startIndex, endIndex);
+  // Tạo HTML cho danh sách tài khoản
+  paginatedUsers.forEach((user, index) => {
+    const statusText = user.status ? "Bình Thường" : "Đã Khóa";
+    const statusClass = user.status ? "text-success" : "text-danger";
+    userList.innerHTML += `
+            <tr>
+                <td>${startIndex + index + 1}</td>
+                <td>${user.userName}</td>
+                <td class="${statusClass}">${statusText}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="toggleUserStatus(${
+                      user.id
+                    })">Block / Unlock</button>
+                    <button class="btn btn-danger" onclick="deleteUser(${
+                      user.id
+                    })">Xóa</button>
+                </td>
+            </tr>
+        `;
+  });
 
-  // Khởi tạo chuỗi HTML để hiển thị người dùng
-  let htmlStr = ``;
-  for (let i = 0; i < paginatedUsers.length; i++) {
-    htmlStr += `
-      <tr>
-        <th scope="row">${startIndex + i + 1}</th>
-        <td>${paginatedUsers[i].userName}</td>
-        <td>${paginatedUsers[i].status ? "bình thường" : "tạm khóa"}</td>
-        <td>
-          <button class="btn btn-primary" onclick="changeStatusUser(${
-            paginatedUsers[i].id
-          })">Khóa / Mở Khóa</button>
-          <button class="btn btn-danger" onclick="deleteUser(${
-            paginatedUsers[i].id
-          })">Xóa</button>
-        </td>
-      </tr>
-    `;
-  }
-
-  // Chèn chuỗi HTML vào bảng người dùng trong trang web
-  document.querySelector("#user_box").innerHTML = htmlStr;
-
-  // Cập nhật thông tin trang hiện tại
   document.getElementById(
     "pageInfo"
-  ).innerText = `Page ${currentPage} of ${Math.ceil(
-    userList.length / itemsPerPage
+  ).innerText = `Trang ${currentPage} / ${Math.ceil(
+    users.length / usersPerPage
   )}`;
 }
 
-renderData();
+// Hiển thị modal thêm/sửa tài khoản
+function showAddModal() {
+  document.getElementById("userId").value = "";
+  document.getElementById("userName").value = "";
+  document.getElementById("userPassword").value = "";
+  document.getElementById("modalTitle").innerText = "Thêm Tài Khoản";
+  document.getElementById("addEditModal").style.display = "block";
+}
 
-// Thay đổi trạng thái của tài khoản (khóa/mở khóa)
-function changeStatusUser(userId) {
-  let userList = JSON.parse(localStorage.getItem("userList"));
-  for (let i = 0; i < userList.length; i++) {
-    if (userList[i].id == userId) {
-      userList[i].status = !userList[i].status;
-      break;
-    }
+// Ẩn modal thêm/sửa tài khoản
+function hideAddEditModal() {
+  document.getElementById("addEditModal").style.display = "none";
+}
+
+// Xử lý form thêm/sửa tài khoản
+function submitUserForm(event) {
+  event.preventDefault();
+  const userId = document.getElementById("userId").value;
+  const userName = document.getElementById("userName").value;
+  const userPassword = document.getElementById("userPassword").value;
+
+  if (userId) {
+    // Chỉnh sửa tài khoản
+    const userIndex = users.findIndex((user) => user.id === parseInt(userId));
+    users[userIndex].userName = userName;
+    users[userIndex].password = userPassword;
+  } else {
+    // Thêm mới tài khoản
+    const newUser = {
+      id: Date.now(),
+      userName,
+      password: userPassword,
+      status: true,
+    };
+    users.push(newUser);
   }
-  localStorage.setItem("userList", JSON.stringify(userList));
-  renderData();
+
+  localStorage.setItem("userList", JSON.stringify(users));
+  renderUsers();
+  hideAddEditModal();
 }
 
-// Xóa tài khoản
-function deleteUser(userId) {
-  let userList = JSON.parse(localStorage.getItem("userList"));
-  userList = userList.filter((user) => user.id !== userId);
-  localStorage.setItem("userList", JSON.stringify(userList));
-  renderData();
-}
-
-// Thêm tài khoản mới
-function addUser() {
-  let newUser = {
-    id: Date.now(),
-    userName: window.prompt("Nhập user name"),
-    password: window.prompt("Nhập password"),
-    status: true,
-  };
-
-  let userList = JSON.parse(localStorage.getItem("userList")) || [];
-  userList.push(newUser);
-  localStorage.setItem("userList", JSON.stringify(userList));
-  renderData();
-  // window.location.reload();
-}
-
-// Tìm kiếm tài khoản
-function searchUser() {
-  let searchValue = document.getElementById("search").value.toLowerCase();
-  let userList = JSON.parse(localStorage.getItem("userList"));
-  let filteredUsers = userList.filter((user) =>
+// Chức năng tìm kiếm tài khoản
+function searchUsers() {
+  const searchValue = document
+    .getElementById("searchInput")
+    .value.toLowerCase();
+  const filteredUsers = users.filter((user) =>
     user.userName.toLowerCase().includes(searchValue)
   );
-  renderData(filteredUsers);
+  renderUsers(filteredUsers);
 }
 
-// Sắp xếp tài khoản
-function sortTable() {
-  let sortOption = document.getElementById("sortOptions").value;
-  let userList = JSON.parse(localStorage.getItem("userList"));
-  userList.sort((a, b) => {
+// Chức năng sắp xếp tài khoản
+function sortUsers() {
+  const sortOption = document.getElementById("sortOptions").value;
+  users.sort((a, b) => {
     if (a[sortOption] < b[sortOption]) return -1;
     if (a[sortOption] > b[sortOption]) return 1;
     return 0;
   });
-  localStorage.setItem("userList", JSON.stringify(userList));
-  renderData();
+  renderUsers();
 }
 
-// Chuyển đến trang tiếp theo
-function nextPage() {
-  const userList = JSON.parse(localStorage.getItem("userList"));
-  if (currentPage * itemsPerPage < userList.length) {
-    currentPage++;
-    renderData();
-  }
-}
-
-// Chuyển đến trang trước đó
+// Chuyển đến trang trước
 function prevPage() {
   if (currentPage > 1) {
     currentPage--;
-    renderData();
+    renderUsers();
   }
 }
+
+// Chuyển đến trang sau
+function nextPage() {
+  if (currentPage < Math.ceil(users.length / usersPerPage)) {
+    currentPage++;
+    renderUsers();
+  }
+}
+
+// Chức năng khóa/mở khóa tài khoản
+function toggleUserStatus(userId) {
+  const userIndex = users.findIndex((user) => user.id === userId);
+  users[userIndex].status = !users[userIndex].status;
+  localStorage.setItem("userList", JSON.stringify(users));
+  renderUsers();
+}
+
+// Chức năng xóa tài khoản
+function deleteUser(userId) {
+  users = users.filter((user) => user.id !== userId);
+  localStorage.setItem("userList", JSON.stringify(users));
+  renderUsers();
+}
+
+// Hiển thị danh sách tài khoản sau khi trang được tải lại
+renderUsers();

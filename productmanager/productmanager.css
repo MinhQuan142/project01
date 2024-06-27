@@ -70,3 +70,6 @@ footer p {
 .text-decoration-line-through {
   text-decoration: line-through;
 }
+.userNameLogin {
+  color: red;
+}
