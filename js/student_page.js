@@ -1,7 +1,11 @@
-//JS Student_pagee------ Bắt đầu-------
+// JS Student_pagee------ Bắt đầu-------
+
 let studentsForm = document.getElementById("studentsForm");
 let studentsTable = document.getElementById("studentsTable");
-let students = [];
+// let students = []; // bỏ dòng này đi vì dòng dưới sẽ khởi tạo
+// Lấy dữ liệu từ localStorage,  và chuyển đổi chuỗi JSON thành mảng đối tượng students. Nếu không có dữ liệu trong localStorage, nó sẽ khởi tạo students thành một mảng rỗng.
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
 let editIndex = -1;
 
 document.getElementById("addNewBtn").addEventListener("click", function () {
@@ -43,6 +47,9 @@ studentsForm.addEventListener("submit", function (event) {
     editIndex = -1;
   }
 
+  // Lưu dữ liệu vào localStorage
+  localStorage.setItem("students", JSON.stringify(students));
+
   updateTable();
   event.preventDefault();
   studentsForm.reset();
@@ -56,20 +63,20 @@ function updateTable(filteredStudents = students) {
   for (let i = 0; i < filteredStudents.length; i++) {
     let student = filteredStudents[i];
     bodyTable.innerHTML += `
-            <tr>
-                <td>${i + 1}</td>
-                <td>${student.id}</td>
-                <td>${student.name}</td>
-                <td>${student.birthYear}</td>
-                <td>${student.address}</td>
-                <td>${student.status}</td>
-                <td>${student.class}</td>
-                <td>
-                    <button class="btn btn-primary" onclick="editStudent(${i})">Sửa</button>
-                    <button class="btn btn-danger" onclick="deleteStudent(${i})">Xóa</button>
-                </td>
-            </tr>
-        `;
+      <tr>
+        <td>${i + 1}</td>
+        <td>${student.id}</td>
+        <td>${student.name}</td>
+        <td>${student.birthYear}</td>
+        <td>${student.address}</td>
+        <td>${student.status}</td>
+        <td>${student.class}</td>
+        <td>
+          <button class="btn btn-primary" onclick="editStudent(${i})">Sửa</button>
+          <button class="btn btn-danger" onclick="deleteStudent(${i})">Xóa</button>
+        </td>
+      </tr>
+    `;
   }
 }
 
@@ -88,6 +95,10 @@ function editStudent(index) {
 
 function deleteStudent(index) {
   students.splice(index, 1);
+
+  // Lưu dữ liệu vào localStorage
+  localStorage.setItem("students", JSON.stringify(students));
+
   updateTable();
 }
 
@@ -108,5 +119,8 @@ function sortTable() {
   });
   updateTable();
 }
+
+// Cập nhật bảng khi trang được tải lại ( nếu không sau khi F5 sẽ hiển thị dữ liệu)
+updateTable();
 
 //----------JS của Student_page ---------- Kết thúc----

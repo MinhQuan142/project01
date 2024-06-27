@@ -1,19 +1,17 @@
-//tạo dữ liệu để đăng nhập
-let userList = [
-  {
-    id: Date.now(),
-    userName: "admin",
-    password: "123",
-  },
-  {
-    id: Date.now(),
-    userName: "member",
-    password: "1234",
-  },
-];
+// Khởi tạo dữ liệu mẫu nếu chưa có
+if (!localStorage.getItem("userList")) {
+  let userList = [
+    {
+      id: Date.now(),
+      userName: "admin",
+      password: "123456",
+      status: true,
+    },
+  ];
+  localStorage.setItem("userList", JSON.stringify(userList));
+}
 
-localStorage.setItem("userList", JSON.stringify(userList));
-//login
+// Chức năng đăng nhập
 function login(event) {
   event.preventDefault();
 
@@ -22,7 +20,7 @@ function login(event) {
 
   let userList = JSON.parse(localStorage.getItem("userList"));
 
-  let userExisted = null; //Biến để lưu trữ thông tin người dùng nếu tìm thấy.
+  let userExisted = null; // Biến để lưu trữ thông tin người dùng nếu tìm thấy.
 
   for (let i = 0; i < userList.length; i++) {
     if (userList[i].userName == userName) {
@@ -30,7 +28,7 @@ function login(event) {
       break;
     }
   }
-  //Nếu không tìm thấy người dùng, hiển thị thông báo và thoát khỏi hàm
+  // Nếu không tìm thấy người dùng, hiển thị thông báo và thoát khỏi hàm
   if (!userExisted) {
     alert("Tài Khoản Không Tồn Tại");
     return;
@@ -41,12 +39,13 @@ function login(event) {
     return;
   }
 
+  if (!userExisted.status) {
+    alert("Tài khoản đã bị khóa");
+    return;
+  }
+
   alert("Đăng Nhập Thành Công");
 
   localStorage.setItem("userLogin", JSON.stringify(userExisted));
-  window.location.href = "../";
+  window.location.href = "/";
 }
-
-// Đăng Xuất Tài Khoản
-let user = JSON.parse(localStorage.getItem("userLogin"));
-document.querySelector(".userNameLogin").innerText = user.userName;

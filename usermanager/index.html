@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hệ Thống Quản Lý Sinh Viên Rikkei</title>
+    <script src="usermanager.js"></script>
     <script>
       let userLogin = localStorage.getItem("userLogin");
       if (!userLogin) {
         window.location.href = "/login";
       }
     </script>
+    <link rel="stylesheet" href="usermanager.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <div class="container-fluid p-0">
@@ -24,7 +26,7 @@
         class="d-flex justify-content-between align-items-center p-3 border-bottom"
       >
         <div class="logo">
-          <img src="./img/logo.png" alt="Logo Rikkei Academy" />
+          <img src="../img/logo.png" alt="Logo Rikkei Academy" />
         </div>
         <h1 class="text-center flex-grow-1">
           HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI
@@ -44,27 +46,22 @@
         <nav class="col-md-2 col-lg-2 bg-light sidebar">
           <ul class="nav flex-column p-3">
             <li class="nav-item">
-              <a class="nav-link active" href="/">
-                <span>icon</span> Bảng điều khiển
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="course_page.html">
-                <span>icon</span> Quản lý khóa học
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="class_page.html">
-                <span>icon</span> Quản lý lớp học
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="student_page.html">
-                <span>icon</span> Quản lý sinh viên
+              <a class="nav-link active" href="../">
+                <span>icon</span> Trang Chủ
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="#">
+                <span>icon</span> Quản lý Danh Mục
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="">
+                <span>icon</span> Quản lý Sản Phẩm
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="../usermanager">
                 <span>icon</span> Quản lý tài khoản
               </a>
             </li>
@@ -72,7 +69,23 @@
         </nav>
 
         <main class="col-md-10 col-lg-10 p-4">
-          <h2>Đang Cập Nhật</h2>
+          <div class="content_box">
+            <h2>User Manager</h2>
+            <button class="btn btn-success" onclick="addUser()">
+              Thêm tài khoản
+            </button>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">User Name</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Tools</th>
+                </tr>
+              </thead>
+              <tbody id="user_box"></tbody>
+            </table>
+          </div>
         </main>
       </div>
 
@@ -84,6 +97,7 @@
       let user = JSON.parse(localStorage.getItem("userLogin"));
       document.querySelector(".userNameLogin").innerText = user.userName;
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
