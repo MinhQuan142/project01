@@ -23,11 +23,6 @@ if (!userLogin) {
 const itemsPerPage = 5;
 let currentPage = 1; // Trang hiện tại
 
-// Hàm đăng xuất
-function logout() {
-  localStorage.removeItem("userLogin");
-  window.location.href = "/login";
-}
 renderHeader();
 
 // Hiển thị dữ liệu tài khoản người dùng lên trang
