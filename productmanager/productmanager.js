@@ -23,28 +23,35 @@ function renderProducts() {
 
   // Tạo HTML cho danh sách sản phẩm
   paginatedProducts.forEach((product, index) => {
-    const statusClass =
-      product.status === "sellingProducts"
-        ? "text-success"
-        : product.status === "stoppedProducts"
-        ? "text-danger text-decoration-line-through"
-        : "text-warning";
+    let statusClass = "";
+    let statusText = "";
+    if (product.status === "Đang bán") {
+      statusClass = "text-success";
+      statusText = "Đang bán";
+    } else if (product.status === "Ngưng bán") {
+      statusClass = "text-danger text-decoration-line-through";
+      statusText = "Ngưng bán";
+    } else if (product.status === "Sắp bán") {
+      statusClass = "text-warning";
+      statusText = "Sắp bán";
+    }
+
     productList.innerHTML += `
-            <tr>
-                <td>${startIndex + index + 1}</td>
-                <td>${product.name}</td>
-                <td>${product.category}</td>
-                <td class="${statusClass}">${product.status}</td>
-                <td>
-                    <button class="btn btn-primary" onclick="editProduct('${
-                      product.id
-                    }')">Sửa</button>
-                    <button class="btn btn-danger" onclick="deleteProduct('${
-                      product.id
-                    }')">Xóa</button>
-                </td>
-            </tr>
-        `;
+      <tr>
+        <td>${startIndex + index + 1}</td>
+        <td>${product.name}</td>
+        <td>${product.category}</td>
+        <td class="${statusClass}">${statusText}</td>
+        <td>
+          <button class="btn btn-primary" onclick="editProduct('${
+            product.id
+          }')">Sửa</button>
+          <button class="btn btn-danger" onclick="deleteProduct('${
+            product.id
+          }')">Xóa</button>
+        </td>
+      </tr>
+    `;
   });
 
   // Cập nhật thông tin trang hiện tại

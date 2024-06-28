@@ -4,6 +4,7 @@ if (!localStorage.getItem("userList")) {
     {
       id: Date.now().toString(36) + Math.random().toString(36),
       userName: "admin",
+      nickName: "Quân PM",
       password: "",
       status: true,
     },

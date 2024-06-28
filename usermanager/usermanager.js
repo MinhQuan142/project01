@@ -22,22 +22,25 @@ function renderUsers() {
   // Tạo HTML cho danh sách tài khoản
   paginatedUsers.forEach((user, index) => {
     const statusText = user.status ? "Bình Thường" : "Đã Khóa";
-    const statusClass = user.status ? "text-success" : "text-danger";
+    const statusClass = user.status
+      ? "text-success"
+      : "text-danger text-decoration-line-through";
     userList.innerHTML += `
-            <tr>
-                <td>${startIndex + index + 1}</td>
-                <td>${user.userName}</td>
-                <td class="${statusClass}">${statusText}</td>
-                <td>
-                    <button class="btn btn-primary" onclick="toggleUserStatus(${
-                      user.id
-                    })">Block / Unlock</button>
-                    <button class="btn btn-danger" onclick="deleteUser(${
-                      user.id
-                    })">Xóa</button>
-                </td>
-            </tr>
-        `;
+      <tr>
+        <td>${startIndex + index + 1}</td>
+        <td>${user.userName}</td>
+        <td>${user.nickName}</td>
+        <td class="${statusClass}">${statusText}</td>
+        <td>
+          <button class="btn btn-primary" onclick="toggleUserStatus('${
+            user.id
+          }')">Khóa / Mở khóa</button>
+          <button class="btn btn-danger" onclick="deleteUser('${
+            user.id
+          }')">Xóa</button>
+        </td>
+      </tr>
+    `;
   });
 
   document.getElementById(
@@ -51,6 +54,7 @@ function renderUsers() {
 function showAddModal() {
   document.getElementById("userId").value = "";
   document.getElementById("userName").value = "";
+  document.getElementById("nickName").value = "";
   document.getElementById("userPassword").value = "";
   document.getElementById("modalTitle").innerText = "Thêm Tài Khoản";
   document.getElementById("addEditModal").style.display = "block";
@@ -66,18 +70,21 @@ function submitUserForm(event) {
   event.preventDefault();
   const userId = document.getElementById("userId").value;
   const userName = document.getElementById("userName").value;
+  const nickName = document.getElementById("nickName").value;
   const userPassword = document.getElementById("userPassword").value;
 
   if (userId) {
     // Chỉnh sửa tài khoản
-    const userIndex = users.findIndex((user) => user.id === parseInt(userId));
+    const userIndex = users.findIndex((user) => user.id === userId);
     users[userIndex].userName = userName;
+    users[userIndex].nickName = nickName;
     users[userIndex].password = userPassword;
   } else {
     // Thêm mới tài khoản
     const newUser = {
-      id: Date.now(),
-      userName,
+      id: Date.now().toString(36) + Math.random().toString(36),
+      userName: userName,
+      nickName: nickName,
       password: userPassword,
       status: true,
     };

@@ -34,18 +34,6 @@ header h1 {
   color: black;
 }
 
-.main {
-  padding: 20px;
-}
-
-.mb-4 {
-  margin-bottom: 1.5rem;
-}
-
-.float-end {
-  float: right;
-}
-
 footer {
   background-color: #f8f9fa;
   border-top: 1px solid #e7e7e7;
@@ -53,22 +41,6 @@ footer {
 
 footer p {
   margin: 0;
-}
-
-.text-success {
-  color: green;
-}
-
-.text-danger {
-  color: red;
-}
-
-.text-warning {
-  color: orange;
-}
-
-.text-decoration-line-through {
-  text-decoration: line-through;
 }
 .userNameLogin {
   color: red;

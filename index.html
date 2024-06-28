@@ -42,7 +42,9 @@
         <nav class="col-md-2 col-lg-2 bg-light sidebar">
           <ul class="nav flex-column p-3">
             <li class="nav-item">
-              <a class="nav-link active" href="/">Trang Chủ</a>
+              <a class="nav-link active btn btn-outline-success me-2" href="/"
+                >Trang Chủ</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="/categorymanager"
@@ -67,7 +69,9 @@
             <h5><b>Thống kê Danh Mục</b></h5>
             <p>
               <i>- Số Danh Mục Đang Có:</i>
-              <span class="float-end"><b id="totalCategories">xxx</b></span>
+              <span class="float-end"
+                ><b id="totalCategories">Loading...</b></span
+              >
             </p>
           </div>
 
@@ -75,19 +79,27 @@
             <h5><b>Thống kê Sản Phẩm</b></h5>
             <p>
               <i>- Số sản phẩm đang có</i>
-              <span class="float-end"><b id="totalProducts">xxx</b></span>
+              <span class="float-end"
+                ><b id="totalProducts">Loading...</b></span
+              >
             </p>
             <p>
               <i>- Số sản phẩm đang bán:</i>
-              <span class="float-end"><b id="sellingProducts">xxx</b></span>
+              <span class="float-end"
+                ><b id="sellingProducts">Loading...</b></span
+              >
             </p>
             <p>
               <i>- Số sản phẩm ngưng bán:</i>
-              <span class="float-end"><b id="stoppedProducts">xxx</b></span>
+              <span class="float-end"
+                ><b id="stoppedProducts">Loading...</b></span
+              >
             </p>
             <p>
               <i>- Số sản phẩm đang chờ đăng bán:</i>
-              <span class="float-end"><b id="pendingProducts">xxx</b></span>
+              <span class="float-end"
+                ><b id="pendingProducts">Loading...</b></span
+              >
             </p>
           </div>
 
@@ -95,15 +107,21 @@
             <h5><b>Thống kê Tài Khoản</b></h5>
             <p>
               <i>- Tổng số Tài Khoản:</i>
-              <span class="float-end"><b id="totalAccounts">xxx</b></span>
+              <span class="float-end"
+                ><b id="totalAccounts">Loading...</b></span
+              >
             </p>
             <p>
               <i>- Số tài khoản bình thường:</i>
-              <span class="float-end"><b id="normalAccounts">xxx</b></span>
+              <span class="float-end"
+                ><b id="normalAccounts">Loading...</b></span
+              >
             </p>
             <p>
               <i>- Số tài khoản đang bị khóa</i>
-              <span class="float-end"><b id="blockedAccounts">xxx</b></span>
+              <span class="float-end"
+                ><b id="blockedAccounts">Loading...</b></span
+              >
             </p>
           </div>
         </main>
@@ -115,7 +133,7 @@
     </div>
     <script>
       let user = JSON.parse(localStorage.getItem("userLogin"));
-      document.querySelector(".userNameLogin").innerText = user.userName;
+      document.querySelector(".userNameLogin").innerText = user.nickName;
     </script>
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,3 +1,4 @@
+//----------------- Account 会計ーーーーーーーーーーーー//
 // Lấy danh sách người dùng từ localStorage
 let userList = JSON.parse(localStorage.getItem("userList")) || [];
 
@@ -8,13 +9,15 @@ let totalAccounts = userList.length;
 let blockedAccounts = userList.filter((user) => !user.status).length;
 
 // Tính số tài khoản bình thường
-let normalAccounts = totalAccounts - blockedAccounts;
+// let normalAccounts = totalAccounts - blockedAccounts;
+let normalAccounts = userList.filter((user) => user.status).length;
 
 // Cập nhật thông tin thống kê trên trang
 document.getElementById("totalAccounts").innerText = totalAccounts;
 document.getElementById("blockedAccounts").innerText = blockedAccounts;
 document.getElementById("normalAccounts").innerText = normalAccounts;
 
+//--------------- Category 会計ーーーーーーーーーーーーーーー//
 // Lấy danh sách danh mục từ localStorage
 let categoryList = JSON.parse(localStorage.getItem("categories")) || [];
 
@@ -27,6 +30,7 @@ document.getElementById("totalCategories").innerText = totalCategories;
 // Lấy danh sách sản phẩm từ localStorage
 let productList = JSON.parse(localStorage.getItem("products")) || [];
 
+//-------- Product 会計ーーーーーーーーーーーーーーー//
 // Tính tổng số sản phẩm
 let totalProducts = productList.length;
 

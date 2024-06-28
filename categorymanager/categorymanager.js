@@ -49,7 +49,7 @@ function showAddModal() {
   document.getElementById("categoryForm").reset(); // Đặt lại biểu mẫu
   document.getElementById("categoryId").value = ""; // Xóa ID danh mục
   document.getElementById("modalTitle").textContent = "Thêm Danh Mục"; // Đặt tiêu đề modal
-  document.getElementById("addEditModal").style.display = "block"; // Hiển thị modal
+  document.getElementById("addEditModal").style.display = "table"; // Hiển thị modal
 }
 
 // Ẩn modal thêm/sửa danh mục
