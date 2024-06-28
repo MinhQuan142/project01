@@ -74,13 +74,13 @@ function submitUserForm(event) {
   const userPassword = document.getElementById("userPassword").value;
 
   if (userId) {
-    // Chỉnh sửa tài khoản
+    //Chỉnh sửa tài khoản
     const userIndex = users.findIndex((user) => user.id === userId);
     users[userIndex].userName = userName;
     users[userIndex].nickName = nickName;
     users[userIndex].password = userPassword;
   } else {
-    // Thêm mới tài khoản
+    //Thêm mới tài khoản
     const newUser = {
       id: Date.now().toString(36) + Math.random().toString(36),
       userName: userName,
