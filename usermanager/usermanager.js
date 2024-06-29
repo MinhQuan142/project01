@@ -73,6 +73,17 @@ function submitUserForm(event) {
   const nickName = document.getElementById("nickName").value;
   const userPassword = document.getElementById("userPassword").value;
 
+  // Kiểm tra đầu vào của dữ liệu xem có đảm bảo khoong
+
+  if (
+    (userName.trim(), nickName.trim(), userPassword.trim() === "") ||
+    userName.includes(" ")
+  ) {
+    alert(
+      "Tài Khoản ( không được phép chứa khoảng trống)/ Mật khẩu /  Nick Name không được để trống"
+    );
+    return;
+  }
   if (userId) {
     //Chỉnh sửa tài khoản
     const userIndex = users.findIndex((user) => user.id === userId);
@@ -80,6 +91,12 @@ function submitUserForm(event) {
     users[userIndex].nickName = nickName;
     users[userIndex].password = userPassword;
   } else {
+    // Kiểm tra xem tài khoản đã tồn tại chưa
+    const existingUser = users.find((user) => user.userName === userName);
+    if (existingUser) {
+      alert(`Tên đăng nhập ${userName} đã tồn tại`);
+      return;
+    }
     //Thêm mới tài khoản
     const newUser = {
       id: Date.now().toString(36) + Math.random().toString(36),
