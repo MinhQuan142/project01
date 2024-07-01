@@ -20,6 +20,8 @@ function login(event) {
   let password = event.target.password.value;
 
   let userList = JSON.parse(localStorage.getItem("userList"));
+  // let nickName = userList.nickName;
+  // console.log(`${temp.nickName} `);
 
   let userExisted = null; // Biến để lưu trữ thông tin người dùng nếu tìm thấy.
 
@@ -45,7 +47,7 @@ function login(event) {
     return;
   }
 
-  alert("Đăng Nhập Thành Công");
+  alert(`Chào mừng ${userName} đã quay trở lại`);
 
   localStorage.setItem("userLogin", JSON.stringify(userExisted));
   window.location.href = "/";

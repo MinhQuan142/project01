@@ -25,15 +25,15 @@ function renderProducts() {
   paginatedProducts.forEach((product, index) => {
     let statusClass = "";
     let statusText = "";
-    if (product.status === "Đang bán") {
+    if (product.status === "Đang Học") {
       statusClass = "text-success";
-      statusText = "Đang bán";
-    } else if (product.status === "Ngưng bán") {
+      statusText = "Đang Học";
+    } else if (product.status === "Đã Xong") {
       statusClass = "text-danger text-decoration-line-through";
-      statusText = "Ngưng bán";
-    } else if (product.status === "Sắp bán") {
+      statusText = "Đã Xong";
+    } else if (product.status === "Sắp Mở") {
       statusClass = "text-warning";
-      statusText = "Sắp bán";
+      statusText = "Sắp Mở";
     }
 
     productList.innerHTML += `
@@ -66,7 +66,7 @@ function renderProducts() {
 function showAddModal() {
   document.getElementById("productForm").reset(); // Đặt lại biểu mẫu
   document.getElementById("productId").value = ""; // Xóa ID sản phẩm
-  document.getElementById("modalTitle").textContent = "Thêm Sản Phẩm"; // Đặt tiêu đề modal
+  document.getElementById("modalTitle").textContent = "Thêm Lớp Học"; // Đặt tiêu đề modal
   document.getElementById("addEditModal").style.display = "block"; // Hiển thị modal
 }
 

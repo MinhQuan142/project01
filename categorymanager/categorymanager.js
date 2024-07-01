@@ -30,7 +30,7 @@ function renderCategories() {
                     }')">Sửa</button>
                     <button class="btn btn-danger" onclick="deleteCategory('${
                       category.id
-                    }')">Xóa</button>
+                    }')">Xóa Khóa Học</button>
                 </td>
             </tr>
         `;

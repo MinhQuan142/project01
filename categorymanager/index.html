@@ -27,20 +27,66 @@
         class="d-flex justify-content-between align-items-center p-3 border-bottom"
       >
         <div class="logo">
-          <img src="/img/logo.png" alt="Logo Rikkei Academy" 
-           />
+          <a href="/"> <img src="/img/logo.png" alt="Logo Rikkei Academy" /></a>
         </div>
-        <h1 class="text-center flex-grow-1">
-          HỆ THỐNG QUẢN LÝ CỦA RIKKEI
-        </h1>
+        <h1 class="text-center flex-grow-1">HỆ THỐNG QUẢN LÝ CỦA RIKKEI</h1>
         <div class="d-flex align-items-center">
-        <p class="mb-0 me-3">Xin chào: <b class="nickNameLogin"></b></p>
+          <p class="mb-0 me-3">Xin chào: <b class="nickNameLogin"></b></p>
+          <!-- Button trigger modal -->
           <button
+            type="button"
             class="btn btn-sm btn-outline-secondary"
-            onclick="localStorage.removeItem('userLogin'); window.location.href = '/login';"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
           >
-            Đăng xuất
+            Đăng Xuất
           </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Thông Báo
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <b class="nickNameLogin">
+                    Bạn có thực sự muốn đăng xuất khỏi trang quản lý không ?</b
+                  >
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Tiếp tục ở lại
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="localStorage.removeItem('userLogin'); window.location.href = '/login';"
+                  >
+                    Vẫn Đăng Xuất
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -54,12 +100,12 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active btn btn-outline-success me-2" href="">
-                 Quản lý Danh Mục
+                 Quản Lý Khóa Học
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="/productmanager">
-                 Quản lý Sản Phẩm
+                 Quản Lý Lớp Học
               </a>
             </li>
             <li class="nav-item">
@@ -73,9 +119,9 @@
         <main class="col-md-10 col-lg-10 p-4">
           
           <div class="content_box">
-            <h2>Quản Lý Danh Mục</h2>
+            <h2>Quản Lý Khóa Học</h2>
             <button class="btn btn-success" onclick="showAddModal()">
-              Thêm Danh Mục
+              Thêm Khóa Học
             </button>
             <input
               type="text"
@@ -96,7 +142,7 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Tên Danh Mục</th>
+                  <th>Tên Khóa</th>
                   <th>Hành Động</th>
                 </tr>
               </thead>
@@ -112,11 +158,11 @@
     <div id="addEditModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="hideAddEditModal()">&times;</span>
-        <h2 id="modalTitle">Thêm Danh Mục</h2>
+        <h2 id="modalTitle">Thêm Khóa Học</h2>
         <form id="categoryForm" onsubmit="submitCategoryForm(event)">
           <input type="hidden" id="categoryId" />
           <div class="mb-3">
-            <label for="categoryName" class="form-label">Tên Danh Mục</label>
+            <label for="categoryName" class="form-label">Tên Khóa Học</label>
             <input
               type="text"
               id="categoryName"

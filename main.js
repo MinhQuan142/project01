@@ -21,32 +21,32 @@ document.getElementById("normalAccounts").innerText = normalAccounts;
 // Lấy danh sách danh mục từ localStorage
 let categoryList = JSON.parse(localStorage.getItem("categories")) || [];
 
-// Tính tổng số danh mục
+// Tính tổng số Khóa Học
 let totalCategories = categoryList.length;
 
 // Cập nhật thông tin thống kê danh mục trên trang
 document.getElementById("totalCategories").innerText = totalCategories;
 
-// Lấy danh sách sản phẩm từ localStorage
+// Lấy danh sách sản phẩm từ localStorage / không cso thì tạo 1 danh sách rỗng
 let productList = JSON.parse(localStorage.getItem("products")) || [];
 
 //-------- Product 会計ーーーーーーーーーーーーーーー//
-// Tính tổng số sản phẩm
+// Tính tổng số Lớp
 let totalProducts = productList.length;
 
-// Tính số sản phẩm đang bán
+// Tính số lớp đàng học
 let sellingProducts = productList.filter(
-  (product) => product.status === "sellingProducts"
+  (product) => product.status === "Đang Học"
 ).length;
 
-// Tính số sản phẩm ngưng bán
+// Tính số lớp đã học xong
 let stoppedProducts = productList.filter(
-  (product) => product.status === "stoppedProducts"
+  (product) => product.status === "Đã Xong"
 ).length;
 
-// Tính số sản phẩm sắp bán
+// Tính số lớp sắp mở
 let pendingProducts = totalProducts - (sellingProducts + stoppedProducts);
-console.log("đã vào");
+// console.log("đã vào");
 // Cập nhật thông tin thống kê sản phẩm trên trang
 document.getElementById("totalProducts").innerText = totalProducts;
 document.getElementById("sellingProducts").innerText = sellingProducts;
