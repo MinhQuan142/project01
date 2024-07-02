@@ -25,12 +25,12 @@ function renderProducts() {
   paginatedProducts.forEach((product, index) => {
     let statusClass = "";
     let statusText = "";
-    if (product.status === "Đang Học") {
+    if (product.status === "sellingProducts") {
       statusClass = "text-success";
-      statusText = "Đang Học";
-    } else if (product.status === "Đã Xong") {
+      statusText = "Đang Bán";
+    } else if (product.status === "stoppedProducts") {
       statusClass = "text-danger text-decoration-line-through";
-      statusText = "Đã Xong";
+      statusText = "Ngưng Bán";
     } else if (product.status === "Sắp Mở") {
       statusClass = "text-warning";
       statusText = "Sắp Mở";

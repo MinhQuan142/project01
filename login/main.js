@@ -1,17 +1,17 @@
 // Main.js for Login site
 // Khởi tạo dữ liệu mẫu nếu chưa có
-if (!localStorage.getItem("userList")) {
-  let userList = [
-    {
-      id: Date.now().toString(36) + Math.random().toString(36),
-      userName: "admin",
-      nickName: "Quân PM",
-      password: "",
-      status: true,
-    },
-  ];
-  localStorage.setItem("userList", JSON.stringify(userList));
-}
+// if (!localStorage.getItem("userList")) {
+//   let userList = [
+//     {
+//       id: Date.now().toString(36) + Math.random().toString(36),
+//       userName: "admin",
+//       nickName: "Quân PM",
+//       password: "",
+//       status: true,
+//     },
+//   ];
+//   localStorage.setItem("userList", JSON.stringify(userList));
+// }
 
 // Chức năng đăng nhập
 function login(event) {
