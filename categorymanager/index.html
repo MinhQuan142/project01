@@ -100,12 +100,12 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active btn btn-outline-success me-2" href="">
-                 Quản Lý Khóa Học
+                 Quản Lý Danh Mục
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="/productmanager">
-                 Quản Lý Lớp Học
+                 Quản Lý Sản Phẩm
               </a>
             </li>
             <li class="nav-item">
@@ -119,9 +119,9 @@
         <main class="col-md-10 col-lg-10 p-4">
           
           <div class="content_box">
-            <h2>Quản Lý Khóa Học</h2>
+            <h2>Quản Lý Danh Mục</h2>
             <button class="btn btn-success" onclick="showAddModal()">
-              Thêm Khóa Học
+              Thêm Danh Mục
             </button>
             <input
               type="text"
@@ -142,7 +142,7 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Tên Khóa</th>
+                  <th>Tên Danh Mục</th>
                   <th>Hành Động</th>
                 </tr>
               </thead>
@@ -158,11 +158,11 @@
     <div id="addEditModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="hideAddEditModal()">&times;</span>
-        <h2 id="modalTitle">Thêm Khóa Học</h2>
+        <h2 id="modalTitle">Thêm Danh Mục</h2>
         <form id="categoryForm" onsubmit="submitCategoryForm(event)">
           <input type="hidden" id="categoryId" />
           <div class="mb-3">
-            <label for="categoryName" class="form-label">Tên Khóa Học</label>
+            <label for="categoryName" class="form-label">Tên Danh Mục</label>
             <input
               type="text"
               id="categoryName"
@@ -173,7 +173,6 @@
           <button type="submit" class="btn btn-primary">Lưu</button>
         </main>
       </div>
-
       <footer class="border-top pt-2 text-center">
         <small>Copyright Rikkei Academy @2023</small>
       </footer>

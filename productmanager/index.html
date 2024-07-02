@@ -102,7 +102,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active btn btn-outline-success me-2" href="">
-                Quản Lý Lớp Học
+                Quản Lý Sản Phẩm
               </a>
             </li>
             <li class="nav-item">
@@ -115,9 +115,9 @@
 
         <main class="col-md-10 col-lg-10 p-4">
           <div class="content_box">
-            <h2>Quản Lý Quản Lý Lớp Học</h2>
+            <h2>Quản Lý Sản Phẩm</h2>
             <button class="btn btn-success" onclick="showAddModal()">
-              Thêm Lớp Học
+              Thêm Sản Phẩm
             </button>
             <input
               type="text"
@@ -138,8 +138,8 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Tên Lớp Học</th>
-                  <th>Khóa HỌc</th>
+                  <th>Tên Sản Phẩm</th>
+                  <th>Danh Mục</th>
                   <th>Trạng Thái</th>
                   <th>Hành Động</th>
                 </tr>
@@ -156,11 +156,11 @@
         <div id="addEditModal" class="modal">
           <div class="modal-content">
             <span class="close" onclick="hideAddEditModal()">&times;</span>
-            <h2 id="modalTitle">Thêm Lớp Học</h2>
+            <h2 id="modalTitle">Thêm Sản Phẩm</h2>
             <form id="productForm" onsubmit="submitProductForm(event)">
               <input type="hidden" id="productId" />
               <div class="mb-3">
-                <label for="productName" class="form-label">Tên Lớp</label>
+                <label for="productName" class="form-label">Tên Sản Phẩm</label>
                 <input
                   type="text"
                   id="productName"
@@ -179,14 +179,12 @@
               <div class="mb-3">
                 <label for="productStatus" class="form-label">Trạng Thái</label>
                 <select id="productStatus" class="form-select" required>
-                  <option class="text-success" value="Đang Học">
-                    Đang Học
-                  </option>
+                  <option class="text-success" value="Đang Học">Đang Mở</option>
                   <option
                     class="text-danger text-decoration-line-through"
                     value="Đã Xong"
                   >
-                    Đã Xong Khóa Học
+                    Đã Kết Thúc
                   </option>
                   <option class="text-warning" value="Sắp Mở">Sắp Mở</option>
                 </select>

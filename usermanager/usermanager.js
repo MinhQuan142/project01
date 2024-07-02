@@ -163,6 +163,7 @@ function toggleUserStatus(userId) {
 function deleteUser(userId) {
   users = users.filter((user) => user.id !== userId);
   localStorage.setItem("userList", JSON.stringify(users));
+  alert(`Bạn có thực sự muốn xoá tài khoản này không?`);
   renderUsers();
 }
 

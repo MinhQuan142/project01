@@ -66,7 +66,7 @@ function renderProducts() {
 function showAddModal() {
   document.getElementById("productForm").reset(); // Đặt lại biểu mẫu
   document.getElementById("productId").value = ""; // Xóa ID sản phẩm
-  document.getElementById("modalTitle").textContent = "Thêm Lớp Học"; // Đặt tiêu đề modal
+  document.getElementById("modalTitle").textContent = "Thêm Sản Phẩm"; // Đặt tiêu đề modal
   document.getElementById("addEditModal").style.display = "block"; // Hiển thị modal
 }
 
@@ -89,7 +89,7 @@ function populateCategoryOptions() {
 function submitProductForm(event) {
   event.preventDefault(); // Ngăn chặn hành vi mặc định của biểu mẫu
   const productId = document.getElementById("productId").value; // Lấy ID sản phẩm (nếu có)
-  const productName = document.getElementById("productName").value.trim(); // Lấy tên sản phẩm
+  const productName = document.getElementById("productName").value.trim(); // Lấy tên sản phẩm * bỏ khoảng trắng 2 đầu giá trị
   const productCategory = document.getElementById("productCategory").value; // Lấy danh mục sản phẩm
   const productStatus = document.getElementById("productStatus").value; // Lấy trạng thái sản phẩm
 
@@ -131,6 +131,7 @@ function editProduct(productId) {
 function deleteProduct(productId) {
   products = products.filter((prod) => prod.id !== productId);
   localStorage.setItem("products", JSON.stringify(products));
+  alert("Bạn có thực sự muốn xóa lớp học này");
   renderProducts();
 }
 

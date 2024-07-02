@@ -1,3 +1,4 @@
+// Main.js for Login site
 // Khởi tạo dữ liệu mẫu nếu chưa có
 if (!localStorage.getItem("userList")) {
   let userList = [

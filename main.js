@@ -1,3 +1,5 @@
+//Main.js for Index
+
 //----------------- Account 会計ーーーーーーーーーーーー//
 // Lấy danh sách người dùng từ localStorage
 let userList = JSON.parse(localStorage.getItem("userList")) || [];
@@ -17,6 +19,9 @@ document.getElementById("totalAccounts").innerText = totalAccounts;
 document.getElementById("blockedAccounts").innerText = blockedAccounts;
 document.getElementById("normalAccounts").innerText = normalAccounts;
 
+
+
+
 //--------------- Category 会計ーーーーーーーーーーーーーーー//
 // Lấy danh sách danh mục từ localStorage
 let categoryList = JSON.parse(localStorage.getItem("categories")) || [];
@@ -27,10 +32,13 @@ let totalCategories = categoryList.length;
 // Cập nhật thông tin thống kê danh mục trên trang
 document.getElementById("totalCategories").innerText = totalCategories;
 
-// Lấy danh sách sản phẩm từ localStorage / không cso thì tạo 1 danh sách rỗng
-let productList = JSON.parse(localStorage.getItem("products")) || [];
+
+
+
 
 //-------- Product 会計ーーーーーーーーーーーーーーー//
+// Lấy danh sách sản phẩm từ localStorage / không cso thì tạo 1 danh sách rỗng
+let productList = JSON.parse(localStorage.getItem("products")) || [];
 // Tính tổng số Lớp
 let totalProducts = productList.length;
 
