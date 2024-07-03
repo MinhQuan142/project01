@@ -3,7 +3,7 @@
 const productsPerPage = 5; // Số sản phẩm mỗi trang
 let currentPage = 1; // Trang hiện tại
 let products = JSON.parse(localStorage.getItem("products")) || []; // Danh sách sản phẩm từ localStorage hoặc khởi tạo rỗng
-let categories = JSON.parse(localStorage.getItem("categories")) || []; // Danh sách danh mục categor từ localStorage
+let categories = JSON.parse(localStorage.getItem("categories")) || []; // Danh sách danh mục category từ localStorage
 
 // Hàm khởi tạo trang
 document.addEventListener("DOMContentLoaded", () => {

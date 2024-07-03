@@ -37,7 +37,7 @@ function renderUsers() {
           }')">Khóa / Mở khóa</button>
           <button class="btn btn-danger" onclick="deleteUser('${
             user.id
-          }')">Xóa</button>
+          }')">Xóa TK</button>
         </td>
       </tr>
     `;
@@ -84,13 +84,14 @@ function submitUserForm(event) {
     );
     return;
   }
-  if (userId) {
-    //Chỉnh sửa tài khoản
-    const userIndex = users.findIndex((user) => user.id === userId);
-    users[userIndex].userName = userName;
-    users[userIndex].nickName = nickName;
-    users[userIndex].password = userPassword;
-  } else {
+  // if (userId) {
+  //   //Chỉnh sửa tài khoản
+  //   const userIndex = users.findIndex((user) => user.id === userId);
+  //   users[userIndex].userName = userName;
+  //   users[userIndex].nickName = nickName;
+  //   users[userIndex].password = userPassword;
+  // }
+  else {
     // Kiểm tra xem tài khoản đã tồn tại chưa
     const existingUser = users.find((user) => user.userName === userName);
     if (existingUser) {
@@ -166,6 +167,4 @@ function deleteUser(userId) {
   alert(`Bạn có thực sự muốn xoá tài khoản này không?`);
   renderUsers();
 }
-
-// Hiển thị danh sách tài khoản sau khi trang được tải lại
 renderUsers();

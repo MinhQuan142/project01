@@ -1,4 +1,12 @@
 /* categorymanager.css */
+body {
+  font-family: "Roboto", sans-serif;
+  background: url("../background.webp") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 categorymanager.css body {
   font-family: Arial, sans-serif;
 }
