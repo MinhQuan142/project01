@@ -83,3 +83,10 @@ header h1 {
 .nickNameLogin {
   color: red;
 }
+.h2-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: "Arial", sans-serif;
+}

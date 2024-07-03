@@ -93,3 +93,9 @@ table td {
 .userNameLogin {
   color: red;
 }
+h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: "Arial", sans-serif;
+}
