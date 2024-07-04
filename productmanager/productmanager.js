@@ -131,7 +131,7 @@ function editProduct(productId) {
 function deleteProduct(productId) {
   products = products.filter((prod) => prod.id !== productId);
   localStorage.setItem("products", JSON.stringify(products));
-  alert("Bạn có thực sự muốn xóa lớp học này");
+  alert("Bạn có muốn xóa sản phẩm này không?");
   renderProducts();
 }
 

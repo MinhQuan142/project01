@@ -96,7 +96,7 @@ function editCategory(categoryId) {
 function deleteCategory(categoryId) {
   categories = categories.filter((cat) => cat.id !== categoryId);
   localStorage.setItem("categories", JSON.stringify(categories));
-  alert("Bạn có muốn xóa khóa học này không?");
+  alert("Bạn có muốn xóa danh mục này không?");
   renderCategories();
 }
 
